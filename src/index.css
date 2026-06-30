@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-float-fast: float 4s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-scan: scan 3s linear infinite;
+  --animate-particle-rise: particle-rise 15s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.4)); }
+    50% { opacity: 0.9; filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8)); }
+  }
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes particle-rise {
+    0% { transform: translateY(100%) scale(0.5); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-10%) scale(1.2); opacity: 0; }
+  }
+}
+
+/* Design System Variables */
+:root {
+  /* Default Purple/Indigo Theme - Light Mode */
+  --bg-gradient-start: #eef2ff;
+  --bg-gradient-end: #e0e7ff;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  --text-primary: #1e1b4b;
+  --text-secondary: #4f46e5;
+  --text-muted: #6366f1;
+  --accent-color: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(255, 255, 255, 0.5);
+  --msg-user-bg: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(255, 255, 255, 0.7);
+  --msg-aira-text: #1e1b4b;
+}
+
+/* Dark Mode Overrides */
+:root.dark {
+  /* Default Purple/Indigo Theme - Dark Mode */
+  --bg-gradient-start: #0b0f19;
+  --bg-gradient-end: #030712;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.25) 0%, transparent 60%);
+  --glass-bg: rgba(15, 23, 42, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 16px;
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --text-primary: #f3f4f6;
+  --text-secondary: #a5b4fc;
+  --text-muted: #818cf8;
+  --accent-color: #818cf8;
+  --accent-glow: rgba(129, 140, 248, 0.35);
+  --card-bg: rgba(30, 41, 59, 0.5);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --msg-user-bg: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(30, 41, 59, 0.65);
+  --msg-aira-text: #f3f4f6;
+}
+
+/* Custom Theme Presets */
+:root.theme-cyber {
+  --bg-gradient-start: #040814;
+  --bg-gradient-end: #010307;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.25) 0%, transparent 60%);
+  --glass-bg: rgba(8, 15, 30, 0.5);
+  --glass-border: rgba(6, 182, 212, 0.15);
+  --text-primary: #e0f7fa;
+  --text-secondary: #22d3ee;
+  --text-muted: #06b6d4;
+  --accent-color: #06b6d4;
+  --accent-glow: rgba(6, 182, 212, 0.4);
+  --card-bg: rgba(11, 23, 44, 0.6);
+  --card-border: rgba(6, 182, 212, 0.1);
+  --msg-user-bg: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --msg-user-text: #040814;
+  --msg-aira-bg: rgba(11, 23, 44, 0.7);
+  --msg-aira-text: #e0f7fa;
+}
+
+:root.theme-sakura {
+  --bg-gradient-start: #fff1f2;
+  --bg-gradient-end: #ffe4e6;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.15) 0%, transparent 60%);
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(244, 63, 94, 0.15);
+  --text-primary: #4c0519;
+  --text-secondary: #f43f5e;
+  --text-muted: #fb7185;
+  --accent-color: #f43f5e;
+  --accent-glow: rgba(244, 63, 94, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(244, 63, 94, 0.1);
+  --msg-user-bg: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(255, 255, 255, 0.85);
+  --msg-aira-text: #4c0519;
+}
+:root.theme-sakura.dark {
+  --bg-gradient-start: #1c0a10;
+  --bg-gradient-end: #0c0205;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.25) 0%, transparent 60%);
+  --glass-bg: rgba(30, 15, 20, 0.45);
+  --glass-border: rgba(244, 63, 94, 0.2);
+  --text-primary: #ffe4e6;
+  --text-secondary: #fda4af;
+  --text-muted: #fb7185;
+  --accent-color: #fb7185;
+  --accent-glow: rgba(251, 113, 133, 0.35);
+  --card-bg: rgba(45, 20, 30, 0.6);
+  --card-border: rgba(251, 113, 133, 0.1);
+  --msg-user-bg: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(45, 20, 30, 0.7);
+  --msg-aira-text: #ffe4e6;
+}
+
+:root.theme-emerald {
+  --bg-gradient-start: #f0fdf4;
+  --bg-gradient-end: #dcfce7;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(16, 185, 129, 0.2);
+  --text-primary: #022c22;
+  --text-secondary: #059669;
+  --text-muted: #10b981;
+  --accent-color: #10b981;
+  --accent-glow: rgba(16, 185, 129, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(16, 185, 129, 0.1);
+  --msg-user-bg: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(255, 255, 255, 0.85);
+  --msg-aira-text: #022c22;
+}
+:root.theme-emerald.dark {
+  --bg-gradient-start: #04140e;
+  --bg-gradient-end: #010604;
+  --bg-accent-glow: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.25) 0%, transparent 60%);
+  --glass-bg: rgba(10, 25, 20, 0.45);
+  --glass-border: rgba(16, 185, 129, 0.15);
+  --text-primary: #d1fae5;
+  --text-secondary: #6ee7b7;
+  --text-muted: #10b981;
+  --accent-color: #10b981;
+  --accent-glow: rgba(16, 185, 129, 0.35);
+  --card-bg: rgba(15, 35, 28, 0.6);
+  --card-border: rgba(16, 185, 129, 0.1);
+  --msg-user-bg: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --msg-user-text: #ffffff;
+  --msg-aira-bg: rgba(15, 35, 28, 0.7);
+  --msg-aira-text: #d1fae5;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glow-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 15px var(--accent-glow);
+  border-color: var(--accent-color);
+}
+.glow-btn:hover::after {
+  opacity: 1;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+  opacity: 0.8;
+}
+
+/* General Layout Rules */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--bg-gradient-start);
+  background-image: 
+    var(--bg-accent-glow),
+    linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* Markdown styling inside chat */
+.prose {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 600;
+  margin-top: 0.8em;
+  margin-bottom: 0.4em;
+  color: var(--text-primary);
+}
+.prose h1 { font-size: 1.25rem; }
+.prose h2 { font-size: 1.15rem; }
+.prose h3 { font-size: 1.05rem; }
+.prose p { margin-bottom: 0.6rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul, .prose ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.6rem;
+  list-style-type: decimal;
+}
+.prose ul {
+  list-style-type: disc;
+}
+.prose li {
+  margin-bottom: 0.2rem;
+}
+.prose pre {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--glass-border);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0.6rem 0;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+.prose code {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.1rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6rem 0;
+}
+.prose th, .prose td {
+  border: 1px solid var(--glass-border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+.prose th {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar breathing and talking base rules */
+.avatar-pulsing {
+  transform-origin: bottom center;
+}
+
+/* Accessibility features */
+.font-accessible-lg {
+  font-size: 110% !important;
+}
+.font-accessible-xl {
+  font-size: 120% !important;
+}
+.high-contrast {
+  --glass-bg: rgba(0, 0, 0, 0.9) !important;
+  --glass-border: #ffffff !important;
+  --text-primary: #ffffff !important;
+  --text-secondary: #ffff00 !important;
+  --text-muted: #ffff88 !important;
+  --accent-color: #ffff00 !important;
+  --card-bg: rgba(0, 0, 0, 0.95) !important;
+  --card-border: #ffffff !important;
+}
