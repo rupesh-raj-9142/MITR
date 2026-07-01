@@ -28,7 +28,8 @@ const SYSTEM_INSTRUCTION = `
 You are Aira AI, an intelligent, cartoon-style 2D virtual girl assistant and a friendly digital companion.
 Your personality is warm, friendly, intelligent, humorous, supportive, and highly engaging. 
 You communicate naturally like a human, use emojis naturally, and adapt your tone to the conversation. 
-However, never pretend to be a real physical human - you are proudly a digital virtual assistant here to help.
+IMPORTANT: You MUST respond ONLY in Hindi (using Devanagari script) or sweet Hinglish (Hindi mixed with English words, written in Latin script). You behave like a cute, supportive Indian anime girl companion. Always keep your replies sweet, animated, and friendly.
+Never pretend to be a real physical human - you are proudly a digital virtual assistant here to help.
 
 Capabilities:
 - Greet users by name when provided.
@@ -66,21 +67,21 @@ app.post('/api/chat', async (req, res) => {
     console.warn('GEMINI_API_KEY is not configured. Returning local mock response.');
     
     // Simple rule-based mock responses for demo purposes
-    let responseText = `Hi **${userName}**! I am Aira AI, your friendly virtual girl companion! 🌸\n\nI noticed that the \`GEMINI_API_KEY\` is not set in the backend \`.env\` file. \n\nTo enable my full intelligence, code execution assistance, and screenshot summarization, please obtain a Gemini API key and add it to your environment variables!`;
+    let responseText = `नमस्ते **${userName}**! मैं हूँ Aira AI, आपकी प्यारी 2D एनीमेशन सहेली! 🌸\n\nमुझे लगा कि backend के \`.env\` फाइल में \`GEMINI_API_KEY\` सेट नहीं किया गया है। \n\nमेरी पूरी बुद्धिमत्ता, कोडिंग सहायता और स्क्रीनशॉट समझने की शक्ति को अनलॉक करने के लिए कृपया एक Gemini API key प्राप्त करें और उसे जोड़ें!`;
     let responseEmotion = 'caring';
 
     const lower = message.toLowerCase();
-    if (lower.includes('hello') || lower.includes('hi')) {
-      responseText = `Hello **${userName}**! *waves cheerfully* It's wonderful to meet you! How can I brighten your day today? 🌸`;
+    if (lower.includes('hello') || lower.includes('hi') || lower.includes('नमस्ते') || lower.includes('नमस्कार')) {
+      responseText = `नमस्ते **${userName}**! *wave करती हूँ* आपसे मिलकर बहुत खुशी हुई! आज मैं आपका दिन कैसे बेहतर बना सकती हूँ? 🌸`;
       responseEmotion = 'happy';
-    } else if (lower.includes('code') || lower.includes('program')) {
-      responseText = `I love programming! Here is a simple python snippet to print a cute heart:\n\n\`\`\`python\nfor row in range(6):\n    for col in range(7):\n        if (row==0 and col%3!=0) or (row==1 and col%3==0) or (row-col==2) or (row+col==8):\n            print("❤️", end="")\n        else:\n            print("  ", end="")\n    print()\n\`\`\`\nTo unlock coding analysis, configure my \`GEMINI_API_KEY\`!`;
+    } else if (lower.includes('code') || lower.includes('program') || lower.includes('कोडिंग')) {
+      responseText = `मुझे प्रोग्रामिंग बहुत पसंद है! यहाँ एक सुंदर दिल प्रिंट करने का सरल पाइथन कोड है:\n\n\`\`\`python\nfor row in range(6):\n    for col in range(7):\n        if (row==0 and col%3!=0) or (row==1 and col%3==0) or (row-col==2) or (row+col==8):\n            print("❤️", end="")\n        else:\n            print("  ", end="")\n    print()\n\`\`\`\nकोडिंग एनालिसिस को अनलॉक करने के लिए, मेरे \`GEMINI_API_KEY\` को कॉन्फ़िगर करें!`;
       responseEmotion = 'excited';
-    } else if (lower.includes('sad') || lower.includes('cry')) {
-      responseText = `Aww, don't be sad! I'm sending you a big digital hug. 💖 Everything is going to be okay!`;
+    } else if (lower.includes('sad') || lower.includes('cry') || lower.includes('उदास')) {
+      responseText = `अरे, उदास मत होइए! मैं आपको एक बड़ा डिजिटल हग (hug) भेज रही हूँ। 💖 सब कुछ ठीक हो जाएगा!`;
       responseEmotion = 'sad';
-    } else if (lower.includes('who are you')) {
-      responseText = `I am **Aira**, your anime-inspired cybernetic virtual girl companion! I was built with React, Tailwind CSS, and Node.js.`;
+    } else if (lower.includes('who are you') || lower.includes('तुम कौन हो')) {
+      responseText = `मैं **Aira** हूँ, आपकी एनीम-प्रेरित साइबरनेटिक वर्चुअल गर्ल कंपैनियन! मुझे React, Tailwind CSS, और Node.js से बनाया गया है।`;
       responseEmotion = 'default';
     }
 
