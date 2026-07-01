@@ -43,10 +43,11 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const allVoices = window.speechSynthesis.getVoices();
       setVoices(allVoices);
       
-      // Auto-select a nice voice if not set
+      // Auto-select a nice voice if not set (prefer Hindi)
       if (!selectedVoiceName && allVoices.length > 0) {
-        // Look for Google, Microsoft, English or Female voices
         const defaultChoice = 
+          allVoices.find(v => v.lang.startsWith('hi-') || v.lang.startsWith('hi')) || // Prefer Hindi voice
+          allVoices.find(v => v.name.toLowerCase().includes('hindi')) ||
           allVoices.find(v => v.name.includes('Google UK English Female') || v.name.includes('Natural')) ||
           allVoices.find(v => v.lang.startsWith('en-') && (v.name.includes('Zira') || v.name.includes('Hazel') || v.name.includes('Female'))) ||
           allVoices.find(v => v.lang.startsWith('en')) ||
@@ -154,7 +155,7 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = 'en-US';
+    recognition.lang = 'hi-IN';
 
     recognition.onstart = () => {
       setIsListening(true);
